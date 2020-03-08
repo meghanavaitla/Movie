@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="card-deck">
+    <div class="card m-3" *ngFor="let m of movies; let i=index" style="min-width:30%">
+      <img [src]="m.poster" class="card-img-top"
+        onerror="this.onerror=null;this.src='https://via.placeholder.com/1400x1400.png?text=Missing+Poster';">
+      <div class="card-body">
+        <h4 data-toggle="tooltip" title="{{m.title}}">
+          {{ (m.title.length>27) ? (m.title | slice:0:25) + "..." : (m.title)}}</h4>
+        <div class="row">
+          <div class="col-md-4">
+            <p style="color: blueviolet;">{{m.year}}</p>
+          </div>
+          <div class="col-md-8">
+              <ngx-stars [color]="'orange'"[readonly]="true" [maxStars]="10" [initialStars]="m.imdb.rating"></ngx-stars>
+          </div>
+        </div>
+        <button class="btn btn-success btn-block mb-2" (click)="buy(i)">Buy</button>
+        <button class="btn btn-warning btn-block" (click)="addItem(i)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>

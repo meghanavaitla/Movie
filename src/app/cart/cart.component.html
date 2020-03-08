@@ -1,0 +1,35 @@
+<div class="container text-center" *ngIf="cartItems.length == 0">
+  <i class="fas fa-shopping-cart text-warning mb-3" style="font-size: 10em;margin-top: 1em;"></i>
+  <h2 class="text-warning">It's lonely here</h2>
+  <h4 class="text-warning">Browse to watch awesome movies</h4>
+  <a routerLink="" class="btn btn-outline-success mt-2">Continue Browsing</a>
+</div>
+<div class="container" *ngIf="cartItems.length > 0">
+  <div class="row">
+    <div class="col-md-12 p-1 m-3">
+      <h3 style="color: lightslategray;">Total {{cartItems.length}} movie(s)</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card p-1 mb-3" *ngFor="let c of cartItems;let i=index">
+        <div class="row">
+          <div class="col-md-2 ">
+            <img src="{{c.poster}}" width="100px" height="100px" class="img-thumbnail">
+          </div>
+          <div class="col-md-8">
+            <h5 style="color: darkslategray;">{{c.title}}</h5>
+            <h6 style="color: blueviolet;">{{c.year}}</h6>
+            <i class="fas fa-star text-warning" data-toggle="tooltip" title="imdb rating"></i> {{c.imdb.rating}}
+          </div>
+          <div class="col-md-2 text-right">
+            <button class="btn" (click)="remove(i)"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 text-right">
+      <button class="btn btn-success" (click)="checkOut()">Checkout</button>
+    </div>
+  </div>
+</div>
